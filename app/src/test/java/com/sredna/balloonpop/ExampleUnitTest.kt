@@ -1,4 +1,4 @@
-package com.example.balloonpop
+package com.sredna.balloonpop
 
 import org.junit.Test
 
