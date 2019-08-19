@@ -31,7 +31,7 @@
                 android:text="Play Game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/btnPlayGame" android:textSize="24sp"
-                android:background="#8BC34A"/>
+                android:background="#8BC34A" android:onClick="onPlayGameClicked"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
