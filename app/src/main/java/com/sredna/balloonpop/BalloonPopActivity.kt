@@ -1,11 +1,13 @@
 package com.sredna.balloonpop
 
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import android.view.animation.Animation
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 import kotlinx.android.synthetic.main.activity_balloonpop_game.*
@@ -54,12 +56,19 @@ class BalloonPopActivity : AppCompatActivity() {
             val startPosition = layoutBalloonpopGame.bottom.toFloat()
             val endPosition = layoutBalloonpopGame.top.toFloat() - balloon.height
             val yAnimator = ObjectAnimator.ofFloat(balloon, View.TRANSLATION_Y, startPosition, endPosition)
-            //how far the balloon has to go to start from the bottom of any screen
-            //and float to the top of the screen and dissapear.
-            //val balloonDistance =
-            // How long it takes the balloon to move off the screen
-            yAnimator.duration = 7000L
+            val rotate = ObjectAnimator.ofFloat(balloon, View.ROTATION, -10f, 10f)
 
+            //how far the balloon has to go to start from the bottom of any screen
+            //and float to the top of the screen and disappear.
+            val balloonDistance = startPosition - endPosition
+            //System.out.println(balloonDistance)
+
+            // How long it takes the balloon to move off the screen
+            yAnimator.duration = (balloonDistance * 2.3).toLong()
+            rotate.repeatCount = Animation.INFINITE
+            rotate.duration = 1500L
+            rotate.repeatMode = ValueAnimator.REVERSE
+            rotate.start()
 
             // Show the balloon and start animating it
             balloon.visibility = View.VISIBLE
