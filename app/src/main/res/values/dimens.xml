@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="popable_size_small">150sp</dimen>
+    <dimen name="popable_size_medium">200sp</dimen>
+    <dimen name="popable_size_large">250sp</dimen>
+</resources>
