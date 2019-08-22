@@ -35,9 +35,12 @@ class BalloonPopActivity : AppCompatActivity() {
             val startPosition = layoutBalloonpopGame.bottom.toFloat()
             val endPosition = layoutBalloonpopGame.top.toFloat() - balloon.height
             val yAnimator = ObjectAnimator.ofFloat(balloon, View.TRANSLATION_Y, startPosition, endPosition)
-
+            //how far the balloon has to go to start from the bottom of any screen
+            //and float to the top of the screen and dissapear.
+            //val balloonDistance =
             // How long it takes the balloon to move off the screen
-            yAnimator.duration = 2500L
+            yAnimator.duration = 7000L
+
 
             // Show the balloon and start animating it
             balloon.visibility = View.VISIBLE
