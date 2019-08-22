@@ -1,26 +1,45 @@
 package com.sredna.balloonpop
 
 import android.animation.ObjectAnimator
-import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.animation.doOnEnd
 import kotlinx.android.synthetic.main.activity_balloonpop_game.*
 
 
 class BalloonPopActivity : AppCompatActivity() {
 
+    private lateinit var balloonCreator: Runnable
+    private val handler: Handler = Handler()
+
+    private val balloonLayoutIds: ArrayList<Int> = arrayListOf(
+            R.layout.balloon_image_view_small,
+            R.layout.balloon_image_view,
+            R.layout.balloon_image_view_large
+        )
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_balloonpop_game)
-        createBalloon()
+
+        balloonCreator = Runnable {
+            try {
+                createBalloon()
+            } finally {
+                handler.postDelayed(balloonCreator, 1000)
+            }
+        }
+
+        balloonCreator.run()
     }
 
     private fun createBalloon() {
-        val balloon: ImageView = LayoutInflater.from(this).inflate(R.layout.balloon_image_view, layoutBalloonpopGame, false) as ImageView
+        val balloon: ImageView = LayoutInflater.from(this).inflate(balloonLayoutIds.random(), layoutBalloonpopGame, false) as ImageView
         // Make the balloon invisible until it is placed where it is supposed to be to avoid flicker
         balloon.visibility = View.INVISIBLE
         layoutBalloonpopGame.addView(balloon)
@@ -42,6 +61,9 @@ class BalloonPopActivity : AppCompatActivity() {
             // Show the balloon and start animating it
             balloon.visibility = View.VISIBLE
             yAnimator.start()
+            yAnimator.doOnEnd {
+                layoutBalloonpopGame.removeView(balloon)
+            }
         }
     }
 }

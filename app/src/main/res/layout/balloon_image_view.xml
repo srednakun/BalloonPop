@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-           android:layout_width="130sp"
-           android:layout_height="130sp"
-           android:src="@drawable/balloon">
-</ImageView>
+        android:layout_width="@dimen/popable_size_medium"
+        android:layout_height="@dimen/popable_size_medium"
+        android:contentDescription="@string/balloon_image_content_description"
+        android:src="@drawable/balloon"></ImageView>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BalloonPop</string>
+
+    <string name="balloon_image_content_description">balloon</string>
+    <string name="balloon_image_small_content_description">small balloon</string>
+    <string name="balloon_image_large_content_description">large balloon</string>
 </resources>
